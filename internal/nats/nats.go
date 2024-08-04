@@ -10,7 +10,6 @@ import (
 )
 
 // Subscribe подключается к NATS-Streaming и обрабатывает сообщения
-
 func Subscribe(cfg *config.Config, orderService *service.OrderService) {
 	sc, err := stan.Connect("test-cluster", "subscriber-client", stan.NatsURL(cfg.NatsURL))
 	if err != nil {

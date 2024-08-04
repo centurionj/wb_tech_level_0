@@ -7,14 +7,14 @@ import (
 )
 
 func SetupRoutes(r *gin.Engine, orderService *service.OrderService) {
-	// Load all HTML templates from the templates directory
+	// Глобальная загрузка шаблонов
 	r.LoadHTMLGlob("templates/*")
 
 	orderController := controllers.NewOrderController(orderService)
 
-	// Handler for the root path
+	// Обработчик на домашнюю страницу
 	r.GET("/", orderController.GetIndex)
 
-	// Handler for creating an order
-	r.POST("/orders", orderController.CreateOrder)
+	// Обработчик на получение данных о заказе
+	r.POST("/orders", orderController.GetOrder)
 }

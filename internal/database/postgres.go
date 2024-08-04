@@ -3,7 +3,6 @@ package database
 import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-
 	"wb_tech_level_0/config"
 	"wb_tech_level_0/pkg/model"
 )

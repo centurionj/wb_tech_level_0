@@ -63,7 +63,7 @@ func (s *OrderService) GetOrder(orderID uint) (*model.Order, error) {
 	return &order, nil
 }
 
-// Pаполняет Redis данными из базы данных
+// Заполняет Redis данными из базы данных
 func (s *OrderService) FillCache() error {
 	ctx := context.Background()
 

@@ -18,7 +18,7 @@ func main() {
 	defer sc.Close()
 
 	order := model.Order{
-		OrderUID:    "b563feb7b2b84b6test_11",
+		OrderUID:    "b563feb7b2b84b6test_1",
 		TrackNumber: "WBILMTESTTRACK",
 		Entry:       "WBIL",
 		Delivery: model.Delivery{

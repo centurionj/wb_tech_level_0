@@ -20,7 +20,7 @@ func (ctrl *OrderController) GetIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", nil)
 }
 
-func (ctrl *OrderController) CreateOrder(c *gin.Context) {
+func (ctrl *OrderController) GetOrder(c *gin.Context) {
 	idStr := c.PostForm("order_id")
 	orderID, err := strconv.ParseUint(idStr, 10, 32)
 	if err != nil {
@@ -43,14 +43,14 @@ func (ctrl *OrderController) CreateOrder(c *gin.Context) {
 		return
 	}
 
-	// Serialize the order to JSON
+	// Сериализация заказа в JSON
 	orderJSON, err := json.Marshal(order)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to marshal order"})
 		return
 	}
 
-	// Render the order on the index.html page
+	// Рендер на index.html
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"Order": string(orderJSON),
 	})

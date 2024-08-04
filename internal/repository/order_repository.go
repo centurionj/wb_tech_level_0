@@ -75,13 +75,3 @@ func (r *OrderRepository) GetAll() ([]model.Order, error) {
 	}
 	return orders, nil
 }
-
-// Извлекает заказ по ID
-
-func (r *OrderRepository) GetByID(orderID uint) (*model.Order, error) {
-	var order model.Order
-	if err := r.db.Preload("Delivery").Preload("Payment").Preload("Items").First(&order, orderID).Error; err != nil {
-		return nil, err
-	}
-	return &order, nil
-}
