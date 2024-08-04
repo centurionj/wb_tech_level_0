@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .json-output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        .json-output code {
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+<h1>Order Information</h1>
+<form action="/orders" method="post">
+    <label for="order_id">Order ID:</label>
+    <input type="text" id="order_id" name="order_id" required>
+    <button type="submit">Get Order</button>
+</form>
+
+{{if .Order}}
+<h2>Order Details 200 OK</h2>
+<div class="json-output">
+    <code id="order-details">{{.Order}}</code>
+</div>
+{{end}}
+
+{{if .error}}
+<h2 style="color: brown">Error 404</h2>
+<div class="json-output">
+    <code id="order-details">{{.error}}</code>
+</div>
+{{end}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const element = document.getElementById('order-details');
+        try {
+            const json = JSON.parse(element.textContent);
+            element.textContent = JSON.stringify(json, null, 4);
+        } catch (e) {
+            console.error('Failed to format JSON:', e);
+        }
+    });
+</script>
+
+</body>
+</html>
